@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Endless Sky</title>
+    <link rel="stylesheet" href="../css/sky.css">
+</head>
+<body>
+    <div class="sky-container">
+        <!-- Aurora Borealis Effect -->
+        <div class="aurora"></div>
+        
+        <!-- Floating Clouds -->
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
+        <div class="cloud cloud-3"></div>
+        
+        <!-- Portal Content -->
+        <div class="portal-content">
+            <h1 data-text="Endless Sky">Endless Sky</h1>
+            <div class="floating-text">
+                <p>Horizons that curve into themselves</p>
+                <p>Clouds that form half-remembered shapes</p>
+                <p>You've been falling upwards for hours</p>
+            </div>
+            <div class="star-field"></div>
+        </div>
+    </div>
+    
+    <audio id="bgMusic" loop>
+        <source src="../audio/sky.m4a" type="audio/mpeg">
+    </audio>
+    
+    <script>
+        // Initialize audio
+        document.addEventListener('click', () => {
+            const audio = document.getElementById('bgMusic');
+            audio.volume = 0.3;
+            audio.play().catch(e => {});
+            
+            // Create shooting stars on click
+            createShootingStar();
+            setInterval(createShootingStar, 8000);
+        }, { once: true });
+        
+        function createShootingStar() {
+            const star = document.createElement('div');
+            star.className = 'shooting-star';
+            star.style.left = `${Math.random() * 100}vw`;
+            star.style.top = `${Math.random() * 30}vh`;
+            document.body.appendChild(star);
+            
+            setTimeout(() => {
+                star.remove();
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

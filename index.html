@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Preload background image -->
+    <link rel="preload" href="images/aero-background.jpg" as="image">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="welcome-title">Welcome</h1>
+            <p class="subtitle">to the █████████ ██████</p>
+        </header>
+
+        <main class="portal-grid">
+            <a href="pages/garden.html" class="portal-card" onclick="navigate(event, 'garden')">
+                <div class="portal-image">
+                    <img src="images/garden.jpg" alt="Serene Garden">
+                </div>
+                <div class="portal-content">
+                    <h3>Serene Garden</h3>
+                    <p>A place of peace and tranquility</p>
+                </div>
+            </a>
+
+            <a href="pages/pool.html" class="portal-card" onclick="navigate(event, 'pool')">
+                <div class="portal-image">
+                    <img src="images/pool.jpg" alt="Crystal Pool">
+                </div>
+                <div class="portal-content">
+                    <h3>Crystal Pool</h3>
+                    <p>Refreshing waters that never end</p>
+                </div>
+            </a>
+
+            <a href="pages/sky.html" class="portal-card" onclick="navigate(event, 'sky')">
+                <div class="portal-image">
+                    <img src="images/sky.jpg" alt="Endless Sky">
+                </div>
+                <div class="portal-content">
+                    <h3>Endless Sky</h3>
+                    <p>Float among the clouds</p>
+                </div>
+            </a>
+
+            <a href="pages/library.html" class="portal-card" onclick="navigate(event, 'library')">
+                <div class="portal-image">
+                    <img src="images/library.jpg" alt="Memory Library">
+                </div>
+                <div class="portal-content">
+                    <h3>Memory Library</h3>
+                    <p>Browse through old times</p>
+                </div>
+            </a>
+        </main>
+
+        <!-- Hidden audio element for ambient sound -->
+        <audio id="bgMusic" loop autoplay>
+            <source src="audio/videoplayback.m4a" type="audio/mpeg">
+        </audio>
+
+        <footer>
+            <p>© <span id="current-year"></span> Dream Portal</p>
+        </footer>
+    </div>
+
+    <script>
+        // Fix for background image cache issue
+        window.addEventListener('pageshow', function(event) {
+            if (event.persisted) {
+                document.body.style.backgroundImage = 'none';
+                setTimeout(() => {
+                    document.body.style.backgroundImage = '';
+                }, 10);
+            }
+        });
+
+        // Initialize ambient audio (fixed volume)
+        const bgMusic = document.getElementById('bgMusic');
+        bgMusic.volume = 0.2; // Permanent low volume
+        
+        // Start audio after user interaction
+        document.addEventListener('click', function initAudio() {
+            bgMusic.play().catch(e => console.log("Memory activated"));
+            document.removeEventListener('click', initAudio);
+        }, { once: true });
+
+        // Set current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Navigation handler
+        function navigate(event, page) {
+            event.preventDefault();
+            
+            // Transition effect
+            document.body.innerHTML = `
+                <div class="loading-screen">
+                    <div class="loading-bubble"></div>
+                    <p>Memory shifting to ${page.replace(/^\w/, c => c.toUpperCase())}...</p>
+                </div>
+            `;
+            
+            setTimeout(() => {
+                window.location.href = `pages/${page}.html`;
+            }, 2000);
+        }
+    </script>
+
+    <style>
+        /* Welcome title styles */
+        .welcome-title {
+            font-weight: 300;
+            font-size: 3.5rem;
+            color: #0066cc;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+            margin: 0;
+        }
+
+        /* Loading screen styles */
+        .loading-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #a8e6ff, #d8f3ff);
+            color: #0066cc;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .loading-bubble {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, 
+                rgba(255,255,255,0.8) 0%, 
+                rgba(200,200,255,0.4) 40%, 
+                transparent 70%);
+            box-shadow: 
+                inset -5px -5px 10px rgba(0,0,100,0.1),
+                inset 0 0 20px rgba(255,255,255,0.8),
+                0 0 20px rgba(100,200,255,0.5);
+            animation: float 2s infinite ease-in-out;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+    </style>
+</body>
+</html>

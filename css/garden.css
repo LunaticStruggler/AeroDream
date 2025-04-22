@@ -1,0 +1,96 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: 
+        radial-gradient(circle at 30% 50%, 
+            rgba(150, 230, 120, 0.2), 
+            transparent 70%),
+        url('../images/gardenhub.png') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    color: #e8ffe0;
+    height: 100vh;
+    overflow: hidden;
+    animation: hue-shift 90s infinite alternate;
+}
+
+.garden-frame {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.portal-content {
+    max-width: 60%;
+    padding: 3rem;
+    text-align: center;
+    background: rgba(30, 80, 20, 0.4);
+    backdrop-filter: blur(8px);
+    border-radius: 15px;
+    border: 1px solid rgba(200, 255, 180, 0.3);
+    box-shadow: 0 0 30px rgba(100, 230, 100, 0.2);
+    z-index: 2;
+}
+
+h1 {
+    font-weight: 300;
+    font-size: 3.5rem;
+    color: #d8ffb0;
+    text-shadow: 0 0 15px rgba(200, 255, 150, 0.5);
+    margin-bottom: 1.5rem;
+}
+
+.garden-text p {
+    font-size: 1.4rem;
+    line-height: 1.8;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: rgba(50, 100, 40, 0.3);
+    border-left: 3px solid #d8ffb0;
+    animation: text-pulse 8s infinite;
+}
+
+.falling-petals {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.petal {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0;
+    filter: drop-shadow(0 0 3px rgba(255, 230, 200, 0.7));
+    animation: fall linear forwards;
+}
+
+@keyframes hue-shift {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(15deg); }
+}
+
+@keyframes text-pulse {
+    0%, 100% { background-color: rgba(50, 100, 40, 0.3); }
+    50% { background-color: rgba(70, 120, 50, 0.4); }
+}
+
+@keyframes fall {
+    0% { 
+        transform: translate(0, -10vh) rotate(0deg);
+        opacity: 0; 
+    }
+    10% { opacity: 0.8; }
+    100% { 
+        transform: translate(calc(-50vw + 100vw * var(--random-x)), 
+                  100vh) rotate(360deg);
+        opacity: 0;
+    }
+}

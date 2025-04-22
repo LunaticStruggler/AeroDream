@@ -1,0 +1,103 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: 
+        linear-gradient(90deg, 
+            rgba(120, 90, 60, 0.3) 0%, 
+            transparent 20%,
+            transparent 80%,
+            rgba(90, 70, 50, 0.3) 100%),
+        url('../images/librarybg.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    color: #ffe8d0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.library-shelf {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.book-spine {
+    position: absolute;
+    width: 80px;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        rgba(80, 50, 30, 0.6) 0%, 
+        rgba(120, 90, 60, 0.4) 50%,
+        rgba(80, 50, 30, 0.6) 100%);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    animation: shelf-creak 10s infinite;
+}
+
+.book-spine.left { 
+    left: 0; 
+    border-right: 1px solid rgba(200, 180, 160, 0.3);
+}
+.book-spine.right { 
+    right: 0; 
+    border-left: 1px solid rgba(200, 180, 160, 0.3);
+}
+
+.portal-content {
+    max-width: 60%;
+    padding: 2rem;
+    text-align: center;
+    background: rgba(60, 40, 20, 0.5);
+    border-left: 10px solid rgba(180, 150, 120, 0.5);
+    border-right: 10px solid rgba(180, 150, 120, 0.5);
+    z-index: 2;
+}
+
+h1 {
+    font-weight: 300;
+    font-size: 3rem;
+    color: #e8c8a0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 2rem;
+    font-family: 'Times New Roman', serif;
+}
+
+.book-text p {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    margin: 1.5rem 0;
+    padding: 0.8rem;
+    background: rgba(40, 30, 20, 0.5);
+    border-left: 3px solid #e8c8a0;
+    text-align: left;
+    font-family: 'Courier New', monospace;
+    animation: text-flicker 5s infinite;
+}
+
+.floating-pages {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.page {
+    position: absolute;
+    width: 40px;
+    height: 60px;
+    background: rgba(255, 240, 220, 0.8);
+    transform: rotate(10deg);
+    filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3));
+}
+
+@keyframes shelf-creak {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+@keyframes text-flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.9; }
+}

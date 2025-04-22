@@ -1,0 +1,188 @@
+/* style.css - Complete Frutiger Aero with Image Background */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: 
+        /* Light blue tint overlay (adjust opacity as needed) */
+        linear-gradient(rgba(168, 230, 255, 0.15), rgba(216, 243, 255, 0.15)),
+        /* Your background image */
+        url('../images/Frutiger\ Rings.png') center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-blend-mode: overlay;
+    color: #333;
+    min-height: 100vh;
+    line-height: 1.6;
+    /* Smooth background transition if image loads slowly */
+    transition: background 1s ease;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+header {
+    text-align: center;
+    padding: 3rem 0;
+    margin-bottom: 2rem;
+    /* Adds subtle glow to header for better visibility */
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.title-glitch {
+    font-weight: 300;
+    font-size: 3.5rem;
+    color: #0066cc;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+    margin: 0;
+    position: relative;
+    /* White glow behind text for better contrast */
+    -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.5);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #6699cc;
+    margin-top: 0.5rem;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+/* Portal Grid Layout */
+.portal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 1rem 0;
+}
+
+/* Enhanced Portal Cards for Image BG */
+.portal-card {
+    background: rgba(255, 255, 255, 0.45);
+    border-radius: 15px;
+    overflow: hidden;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 
+        0 5px 15px rgba(0, 0, 0, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.portal-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 10px 25px rgba(0, 0, 0, 0.2),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.portal-image {
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+    position: relative;
+}
+
+.portal-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, 
+        rgba(255,255,255,0.3) 0%, 
+        rgba(255,255,255,0) 100%);
+}
+
+.portal-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.portal-card:hover .portal-image img {
+    transform: scale(1.05);
+}
+
+.portal-content {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.portal-content h3 {
+    margin: 0 0 0.5rem;
+    color: #0066cc;
+    font-weight: 400;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.portal-content p {
+    margin: 0;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2rem;
+    margin-top: 3rem;
+    color: #6699cc;
+    font-size: 0.9rem;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    border-radius: 10px;
+}
+
+/* Glitch Effect */
+.title-glitch::before {
+    content: attr(data-text);
+    position: absolute;
+    left: -2px;
+    text-shadow: 2px 0 #0ff;
+    top: 0;
+    color: #0066cc;
+    background: transparent;
+    overflow: hidden;
+    clip: rect(0, 900px, 0, 0);
+    animation: noise-anim 2s infinite linear alternate-reverse;
+    opacity: 0.7;
+}
+
+@keyframes noise-anim {
+    0% { clip: rect(61px, 9999px, 119px, 0); }
+    10% { clip: rect(33px, 9999px, 59px, 0); }
+    20% { clip: rect(121px, 9999px, 6px, 0); }
+    30% { clip: rect(143px, 9999px, 99px, 0); }
+    40% { clip: rect(65px, 9999px, 85px, 0); }
+    50% { clip: rect(120px, 9999px, 172px, 0); }
+    60% { clip: rect(14px, 9999px, 162px, 0); }
+    70% { clip: rect(72px, 9999px, 180px, 0); }
+    80% { clip: rect(21px, 9999px, 35px, 0); }
+    90% { clip: rect(126px, 9999px, 153px, 0); }
+    100% { clip: rect(97px, 9999px, 82px, 0); }
+}
+
+/* Bonus: Floating bubble decoration */
+.bubble {
+    position: fixed;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(2px);
+    border: 1px solid rgba(255,255,255,0.3);
+    animation: float 15s infinite ease-in-out;
+    z-index: -1;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-100px) rotate(180deg); }
+}
